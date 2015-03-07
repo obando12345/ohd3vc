@@ -16,38 +16,18 @@
 			];
 
 			$.each(data, function(i, val){
-				console.log("Aloop="+i);
-				// if('result' in val && val.result == false) {
-				// 	alert('ajax');
-				// 	return;
-				// }
-				
 				var ele_id = "ele_"+i;
-				// var $ele = $("<div id='"+ele_id+"'>"+val.message+":"+val.status+"</div>");
+
 				if(val.status == "OK") {
 					var result_img = "check-mark-10-64.png";
 				} else {
 					var result_img = "x-mark-64.png";
 				}
 				var $ele = $("<li style='font-size:x-large' class='media slideLeft'><div class='media-left'><img id='"+ele_id+"' class='media-object' src='img/"+result_img+"' ></div><div class='media-body'><h3 class='media-heading'>"+val.question+"</h3>"+val.reason+"</div></li><hr>");
-				var delay = 3000*(i+1);
-				var proc_flg = false;
-				$ele.delay(delay).queue(function(){
-					// if(proc_flg == true) {
-					// 	continue;
-					// }
 
-					console.log($.now().toLocaleString());
-
-					console.log("Bloop="+i);
-					if('result' in val && val.result == false && proc_flg == false) {
-						proc_flg = true;
-						// alert('ajax');
-						// $ele.delay(10000);
-						// alert('ajax2');
-						// $(this).delay(1000).queue(function(){
-						// 	console.log("Cloop="+i);
-						// });
+				var delay = 3000*(i+1);				
+				setTimeout(function(){
+					if('result' in val && val.result == false) {
 						$.ajax({
 							type: "GET",
 							url: "sample/cloudbits.php?percent=100",
@@ -60,32 +40,9 @@
 						});
 						return;
 					}
-
-					if(proc_flg == true) {
-						return;
-					}
-					// $ele.addClass("slideLeft list-group-item");
-					// $("#rows").append($ele);
-					$("#list").append($(this));
-					$(this).dequeue();
+					$("#list").append($ele);
 					$('html,body').animate({ scrollTop: $("#bottom").offset().top }, 'fast');
-					// $("#contents").scrollTop($("#contents")[0].scrollHeight);
-					// var $pre_ele = $("#ele_"+i-1);
-					// console.log($pre_ele);
-					// $pre_ele.removeClass("active");
-
-				// $ele.delay(delay+1000).queue(function(){
-				// 	// alert("aa");
-				// 	$("#"+ele_id).attr("src", "img/question-mark-4-64.png");
-				// 	$ele.dequeue();
-				// });
-				});
-
-				// setTimeout(function(){}, 3000);
-				// var ele = "<div id='ele_"+i+"'>"+val.message+"</div>";
-				// $ele.hide();
-				// $ele.fadeIn(3000);
-
+				}, delay);
 			});
 		});
 	</script>
