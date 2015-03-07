@@ -1,6 +1,7 @@
 <?php
 
-$percent = (int)$argv[1];
+$percent = $_GET['percent'];
+// $percent = (int)$argv[1];
 echo($percent . "\n");
 
 $url = "https://api-http.littlebitscloud.cc/devices/00e04c02aac4/output";
@@ -12,8 +13,8 @@ $option = array(
     ),
     CURLOPT_POST => true,
     CURLOPT_POSTFIELDS => http_build_query(array(
-        percent => $percent,
-        duration_ms => -1
+        'percent' => $percent,
+        'duration_ms' => -1
     )),
 );
 

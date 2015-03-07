@@ -1,0 +1,149 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/my.css">
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var data = [
+				{question: "友達の数", reason: "10人：少ない", status: "OK"},
+				{question: "いいねされた数", reason: "5,000いいね：多い", status: "NG"},
+				{question: "タグ付けされた数", reason: "300：多い", status: "NG"},
+				{result: false}
+			];
+
+			$.each(data, function(i, val){
+				console.log("Aloop="+i);
+				// if('result' in val && val.result == false) {
+				// 	alert('ajax');
+				// 	return;
+				// }
+				
+				var ele_id = "ele_"+i;
+				// var $ele = $("<div id='"+ele_id+"'>"+val.message+":"+val.status+"</div>");
+				if(val.status == "OK") {
+					var result_img = "check-mark-10-64.png";
+				} else {
+					var result_img = "x-mark-64.png";
+				}
+				var $ele = $("<li style='font-size:x-large' class='media slideLeft'><div class='media-left'><img id='"+ele_id+"' class='media-object' src='img/"+result_img+"' ></div><div class='media-body'><h3 class='media-heading'>"+val.question+"</h3>"+val.reason+"</div></li><hr>");
+				var delay = 3000*(i+1);
+				var proc_flg = false;
+				$ele.delay(delay).queue(function(){
+					// if(proc_flg == true) {
+					// 	continue;
+					// }
+
+					console.log($.now().toLocaleString());
+
+					console.log("Bloop="+i);
+					if('result' in val && val.result == false && proc_flg == false) {
+						proc_flg = true;
+						// alert('ajax');
+						// $ele.delay(10000);
+						// alert('ajax2');
+						// $(this).delay(1000).queue(function(){
+						// 	console.log("Cloop="+i);
+						// });
+						$.ajax({
+							type: "GET",
+							url: "sample/cloudbits.php?percent=100",
+							success: function(){
+								alert("ajax success");
+							},
+							error: function(req, st, e) {
+								alert(st);
+							}
+						});
+						return;
+					}
+
+					if(proc_flg == true) {
+						return;
+					}
+					// $ele.addClass("slideLeft list-group-item");
+					// $("#rows").append($ele);
+					$("#list").append($(this));
+					$(this).dequeue();
+					$('html,body').animate({ scrollTop: $("#bottom").offset().top }, 'fast');
+					// $("#contents").scrollTop($("#contents")[0].scrollHeight);
+					// var $pre_ele = $("#ele_"+i-1);
+					// console.log($pre_ele);
+					// $pre_ele.removeClass("active");
+
+				// $ele.delay(delay+1000).queue(function(){
+				// 	// alert("aa");
+				// 	$("#"+ele_id).attr("src", "img/question-mark-4-64.png");
+				// 	$ele.dequeue();
+				// });
+				});
+
+				// setTimeout(function(){}, 3000);
+				// var ele = "<div id='ele_"+i+"'>"+val.message+"</div>";
+				// $ele.hide();
+				// $ele.fadeIn(3000);
+
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="contents" class="container">
+		<h2 class="jumbotron">判定結果</h2>
+		<ul id="list" class="media-list">
+<!-- 		  <li class="media slideLeft">
+		    <div class="media-left">
+		        <img class="media-object" src="img/check-mark-10-64.png" alt="...">
+		    </div>
+		    <div class="media-body">
+		      <h4 class="media-heading">Media heading</h4>
+		      ...
+		    </div>
+		  </li>
+		  <hr>
+		  <li class="media slideLeft">
+		    <div class="media-left">
+		      <a href="#">
+		        <img class="media-object" src="img/x-mark-64.png" alt="...">
+		      </a>
+		    </div>
+		    <div class="media-body">
+		      <h4 class="media-heading">Media heading</h4>
+		      ...
+		    </div>
+		  </li> -->
+		</ul>
+<!-- 		<div id="rows" class="list-group">
+			<div class="list-group-item">hello world!</div>
+			<div class="list-group-item">3561279752375</div>
+		</div> -->
+	</div>
+	<div id="bottom"></div>
+
+<!-- Large modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div> -->
+
+<!-- Small modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div> -->
+
+</body>
+</html>
