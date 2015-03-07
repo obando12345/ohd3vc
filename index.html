@@ -18,12 +18,16 @@
 			$.each(data, function(i, val){
 				var ele_id = "ele_"+i;
 
-				if(val.status == "OK") {
-					var result_img = "check-mark-10-64.png";
-				} else {
-					var result_img = "x-mark-64.png";
-				}
-				var $ele = $("<li style='font-size:x-large' class='media slideLeft'><div class='media-left'><img id='"+ele_id+"' class='media-object' src='img/"+result_img+"' ></div><div class='media-body'><h3 class='media-heading'>"+val.question+"</h3>"+val.reason+"</div></li><hr>");
+				// var canvas = $("#clear_box");
+				// console.log(canvas);
+				// canvas.getContext('2d');
+				// var ctx = canvas.getContext("2d");
+				// ctx.beginPath();
+  		// 		ctx.fillRect(20, 20, 80, 40);
+  		var result_img = "question-mark-4-64.png";
+
+
+				var $ele = $("<li style='font-size:x-large' class='media slideLeft'><div class='media-left'><img id='"+ele_id+"' class='media-object' style='width:64px;height:64px;border:none;'></div><div class='media-body'><h3 class='media-heading'>"+val.question+"</h3>"+val.reason+"</div></li><hr>");
 
 				var delay = 3000*(i+1);				
 				setTimeout(function(){
@@ -42,6 +46,14 @@
 					}
 					$("#list").append($ele);
 					$('html,body').animate({ scrollTop: $("#bottom").offset().top }, 'fast');
+					setTimeout(function(){
+						if(val.status == "OK") {
+							var result_img = "check-mark-10-64.png";
+						} else {
+							var result_img = "x-mark-64.png";
+						}
+						// $("#"+ele_id).attr("src", "img/"+result_img);
+					}, 2000);
 				}, delay);
 			});
 		});
@@ -79,6 +91,7 @@
 		</div> -->
 	</div>
 	<div id="bottom"></div>
+	<canvas id="clear_box"></canvas>
 
 <!-- Large modal -->
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
