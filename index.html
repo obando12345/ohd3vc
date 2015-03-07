@@ -18,16 +18,20 @@
 			$.each(data, function(i, val){
 				var ele_id = "ele_"+i;
 
-				// var canvas = $("#clear_box");
-				// console.log(canvas);
-				// canvas.getContext('2d');
-				// var ctx = canvas.getContext("2d");
-				// ctx.beginPath();
-  		// 		ctx.fillRect(20, 20, 80, 40);
-  		var result_img = "question-mark-4-64.png";
+				var canvas = document.getElementById("clear_box");
+				// console.log(canvas.toDataURL());
+				if ( ! canvas || ! canvas.getContext ) {
+    				return false;
+  				}
+				canvas.getContext('2d');
+				var ctx = canvas.getContext("2d");
+				ctx.beginPath();
+  				ctx.clearRect(0, 0, 64, 64);
+  				// var result_img = "question-mark-4-64.png";
+  				var result_img = canvas.toDataURL();
+  				// console.log(canvas.toDataURL());
 
-
-				var $ele = $("<li style='font-size:x-large' class='media slideLeft'><div class='media-left'><img id='"+ele_id+"' class='media-object' style='width:64px;height:64px;border:none;'></div><div class='media-body'><h3 class='media-heading'>"+val.question+"</h3>"+val.reason+"</div></li><hr>");
+				var $ele = $("<li style='font-size:x-large' class='media slideLeft'><div class='media-left'><img id='"+ele_id+"' class='media-object' src='"+result_img+"'></div><div class='media-body'><h3 class='media-heading'>"+val.question+"</h3>"+val.reason+"</div></li><hr>");
 
 				var delay = 3000*(i+1);				
 				setTimeout(function(){
@@ -91,7 +95,7 @@
 		</div> -->
 	</div>
 	<div id="bottom"></div>
-	<canvas id="clear_box"></canvas>
+	<canvas id="clear_box" style="display:none;" width="64" height="64"></canvas>
 
 <!-- Large modal -->
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
