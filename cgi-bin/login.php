@@ -49,7 +49,7 @@ if($session) {
                         );
 }
 if(!$session) {
-    $permit = sprintf('<div><a href="%s"><img src=./login_button_facebook_i.jpg alt="facebook認証"></a></div>', 
+    $permit = sprintf('<div><a href="%s"><img src="../img/login_button_facebook_i.jpg" alt="facebook認証"></a></div>', 
                         $helper->getLoginUrl($scope));
 }
 
