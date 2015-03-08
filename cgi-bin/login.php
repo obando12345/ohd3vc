@@ -2,7 +2,7 @@
 
 
 // FB SDKのパス
-define('LIB_DIR', '/Applications/MAMP/Library/lib/facebook-php-sdk-v4-4.0-dev/');
+define('LIB_DIR', __DIR__.'/../lib/facebook-php-sdk-v4-4.0-dev/');
 
 define('FACEBOOK_SDK_V4_SRC_DIR', LIB_DIR.'/src/Facebook/');
 require LIB_DIR.'autoload.php';
@@ -55,7 +55,6 @@ if(!$session) {
 
 if(isset($response)) {
     $graphObject = $response->getGraphObject();
-    print_r($graphObject->getPropertyAsArray();
     print_r($graphObject->getProperty('relationship_status'));
     print_r($graphObject->getProperty('friends')->getProperty('summary')->getProperty('total_count'));
 }
