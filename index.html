@@ -19,7 +19,7 @@
 				var ele_id = "ele_"+i;
 
 				var canvas = document.getElementById("clear_box");
-				// console.log(canvas.toDataURL());
+
 				if ( ! canvas || ! canvas.getContext ) {
     				return false;
   				}
@@ -27,9 +27,8 @@
 				var ctx = canvas.getContext("2d");
 				ctx.beginPath();
   				ctx.clearRect(0, 0, 64, 64);
-  				// var result_img = "question-mark-4-64.png";
+
   				var result_img = canvas.toDataURL();
-  				// console.log(canvas.toDataURL());
 
 				var $ele = $("<li style='font-size:x-large' class='media slideLeft'><div class='media-left'><img id='"+ele_id+"' class='media-object' src='"+result_img+"'></div><div class='media-body'><h3 class='media-heading'>"+val.question+"</h3>"+val.reason+"</div></li><hr>");
 
@@ -67,57 +66,9 @@
 	<div id="contents" class="container">
 		<h2 class="jumbotron">判定結果</h2>
 		<ul id="list" class="media-list">
-<!-- 		  <li class="media slideLeft">
-		    <div class="media-left">
-		        <img class="media-object" src="img/check-mark-10-64.png" alt="...">
-		    </div>
-		    <div class="media-body">
-		      <h4 class="media-heading">Media heading</h4>
-		      ...
-		    </div>
-		  </li>
-		  <hr>
-		  <li class="media slideLeft">
-		    <div class="media-left">
-		      <a href="#">
-		        <img class="media-object" src="img/x-mark-64.png" alt="...">
-		      </a>
-		    </div>
-		    <div class="media-body">
-		      <h4 class="media-heading">Media heading</h4>
-		      ...
-		    </div>
-		  </li> -->
 		</ul>
-<!-- 		<div id="rows" class="list-group">
-			<div class="list-group-item">hello world!</div>
-			<div class="list-group-item">3561279752375</div>
-		</div> -->
 	</div>
 	<div id="bottom"></div>
 	<canvas id="clear_box" style="display:none;" width="64" height="64"></canvas>
-
-<!-- Large modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
-
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      ...
-    </div>
-  </div>
-</div> -->
-
-<!-- Small modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
-
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      ...
-    </div>
-  </div>
-</div> -->
-
 </body>
 </html>
